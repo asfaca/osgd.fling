@@ -1,0 +1,231 @@
+.main_header {
+    width: 100%;
+    height: 480px;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.main_header .logo_wrap {
+    float: left;
+    padding-left: 10px;
+    padding-top: 16px;
+}
+
+.main_header .fling_logo {
+    background-image: url(../assets/img/fling_logo_white.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 65px;
+    height: 40px;
+}
+
+.main_header .head_item {
+    position: relative;
+    padding-top: 16px;
+    text-align: right;
+}
+
+.main_header .head_item > ul {
+    white-space: nowrap;
+}
+
+.main_header .head_item > ul > li {
+    padding-right: 15px;
+    padding-left: 15px;
+    display: inline-block;
+}
+
+.main_header .head_item > ul > li > a {
+    cursor: pointer;
+}
+
+.main_header .head_item > ul > li:last-child {
+    padding-right: 0;
+}
+
+.main_header_fade_in {
+    background-image: url(../assets/img/main_image2.png);
+    width: 100%;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: -100;
+    opacity: 1;
+    transition: 2s;
+    filter: blur(1px);
+}
+
+.main_header_fade_out {
+    background-image: url(../assets/img/main_image.png);  
+    width: 100%;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: -100;
+    opacity: 1;
+    transition: 2s;
+    filter: blur(1px);
+}
+
+.main_header_fade_middle {
+    background-image: url(../assets/img/main_image3.png);  
+    width: 100%;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: -100;
+    opacity: 1;
+    transition: 2s;
+    filter: blur(1px);
+}
+
+.main_header_dimmed {
+    background-color: black;
+    width: 100%;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    z-index: -50;
+    opacity: 0.4;
+}
+
+.search_window {
+    width: 700px;
+    margin: 0 auto;
+    padding: 150px 10px 0 10px;
+}
+
+.search_form {
+    border-bottom: 3px solid white;
+    padding: 0px 6px 0 6px;
+}
+
+.search_text {
+    width: 640px;
+    height: 70px;
+    font-size: 28pt;
+    font-weight: 100;
+    background: transparent;
+    color: white;
+    border: 0;
+    outline: 0;
+}
+
+.search_icon_wrap {
+    float: right;
+    padding-top: 16px;
+}
+
+.search_icon {
+    background-image: url(../assets/img/search_icon3x.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: Transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+}
+
+.search_desc {
+    display: inline-block;
+    margin-top: 18px;
+}
+
+.search_window ::-webkit-input-placeholder { 
+    color: white;
+}
+
+.heamuk_link {
+    font-weight: 400;
+    letter-spacing: -0.8pt;
+    position: absolute;
+    right: 35px;
+    bottom: 20px;
+}
+
+.heamuk_link:after {
+    padding-left: 12px;
+    content: url(../assets/img/arrow_icon.png);
+}
+
+.main_section .section_title {
+    font-size: 30pt;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.section_title em {
+    font-style: normal;
+    font-weight: 500;
+}
+
+.section_title .separate {
+    width: 40px;
+    margin: 20px auto;
+    border-top: 1px solid #aaa;
+}
+
+.search_bar {
+    width: 694px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #e2e2e2;
+    margin: 15px auto;
+    display: none;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 3;
+}
+.search_bar_list {
+    border-bottom: 1px solid #ddd;
+    height: 73px;
+}
+.search_bar_list:hover {
+    background: #eee;
+}
+.search_bar_img {
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+.search_bar_list > .product_info > div {
+    font-size: 14pt;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
+.search_bar_list > .product_info > span {
+    color: #666;
+} 
+.product_info {
+    display: inline-block;
+    padding-top: 8px;
+    color: black;
+}
+.search_bar_button {
+    cursor: pointer;
+    float: right;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #ffb847;
+    border-radius: 10px;
+    margin: 16px;
+    background-color: #ffb847;
+    font-size: 14pt;
+    font-weight: 500;
+    color: white;
+}
+
+.selected {
+    background: #eee;
+}
