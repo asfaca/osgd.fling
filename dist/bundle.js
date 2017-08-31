@@ -10276,7 +10276,7 @@ window.Fling.CartPage = {
         Fling.CartPage.getUserCart();
         Fling.$('.refrige_popup').addEventListener('click', Fling.onRefrigePopupHandler);
         Fling.$('.btn_fling').addEventListener('click', function (e) {
-            return window.location.href = './main.html';
+            return window.location.href = './index.html';
         });
     },
     getUserCart: function getUserCart() {
@@ -10628,6 +10628,7 @@ window.Fling.RefrigePopup = {
         var myRefrige = JSON.parse(window.localStorage.getItem("myRefrige"));
         var id = e.target.parentElement.getAttribute("value") * 1;
         var name = e.target.previousElementSibling.dataset.name;
+        var refrigeListItem = Array.from(Fling.$$(".refrige_list_item"));
 
         if (e.target.className == "add_material_btn") {
             var obj = {};
@@ -10647,7 +10648,7 @@ window.Fling.RefrigePopup = {
                 if (myRefrige[i].name == name) {
                     Fling.Storage.removeMyRefrige(i);
                     //remove list
-                    Fling.$(".refrige_list").children[i].remove();
+                    Fling.$(".refrige_list").children[refrigeListItem.length - i - 1].remove();
                     //reset searchbar
                     Fling.$(".search_bar").style.display = "none";
                     Fling.$(".search_text").value = "";
@@ -10683,7 +10684,7 @@ window.Fling = window.Fling || {};
 window.Fling.NoPage = {
     EventHandler: function EventHandler() {
         window.setTimeout(function (e) {
-            window.location.replace("./main.html");
+            window.location.replace("./index.html");
         }, 1500);
     }
 };
