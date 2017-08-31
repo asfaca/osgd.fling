@@ -9641,11 +9641,8 @@ window.Fling.Main = {
                             Fling.$(".search_text").addEventListener("keyup", Fling.Main.searchHandler);
                             Fling.$(".refrige_popup").addEventListener("click", Fling.onRefrigePopupHandler);
                             Fling.onEvent('.search_text', 'keydown', Fling.Main.searchBarUpDownHandler);
-                            Fling.onEvent('.search_bar_button', 'keypress', function (e) {
-                                if (e.code == 'Enter') return;
-                            });
 
-                        case 19:
+                        case 18:
                         case 'end':
                             return _context.stop();
                     }
@@ -10363,7 +10360,9 @@ window.Fling.CartPage = {
         divArr.forEach(function (el, index) {
             if (el == target) {
                 e.target.href = 'javascript:void(0)';
-                Fling.Utils.PopupCenter('./recipe_popup.html?data=' + Fling.Utils.encodeBase64(JSON.stringify(data[index])), 'recipeInfoWindow', 700, 800);
+                var blob = new Blob([JSON.stringify(data[index], null, 2)], { type: 'application: json' });
+                var blobUrl = URL.createObjectURL(blob);
+                Fling.Utils.PopupCenter('./recipe_popup.html?data=' + Fling.Utils.encodeBase64(blobUrl), 'recipeInfoWindow', 700, 800);
             }
         });
     },
@@ -10426,22 +10425,54 @@ window.Fling.CartPage = {
 "use strict";
 
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 window.Fling = window.Fling || {};
 window.Fling.RecipePopup = {
-    EventHandler: function EventHandler(e) {
-        // getParameterByName 함수가 공백을 +로 바꿈
-        var data = Fling.Utils.getParameterByName('data').replace(/ /g, '+');
-        data = JSON.parse(Fling.Utils.decodeBase64(data));
-        Fling.RecipePopup.modifyData(data);
-        Fling.$('.header_box .circle_img').style.backgroundImage = data.recipeImg;
-        Fling.$('.header_box .recipe_site_link a').href = data.recipeUrl;
-        Fling.$('.header_box .description').innerText = data.recipeSubtitle;
-        Fling.$('.header_box .title a').innerText = data.recipeTitle;
-        var theTemplateScript = Fling.$("#product_list_template").innerHTML;
-        var theTemplate = Handlebars.compile(theTemplateScript);
-        var theCompiledHtml = theTemplate(data);
-        Fling.$('.product_list_wrap').innerHTML = theCompiledHtml;
-    },
+    EventHandler: function () {
+        var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(e) {
+            var blobUrl_base64, blobUrl, data, theTemplateScript, theTemplate, theCompiledHtml;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            // getParameterByName 함수가 공백을 +로 바꿈
+                            blobUrl_base64 = Fling.Utils.getParameterByName('data').replace(/ /g, '+');
+                            blobUrl = Fling.Utils.decodeBase64(blobUrl_base64);
+                            //let data = await Fling.RecipePopup.getBlobData(blobUrl);
+
+                            _context.next = 4;
+                            return Fling.API.get2(blobUrl);
+
+                        case 4:
+                            data = _context.sent;
+
+
+                            Fling.RecipePopup.modifyData(data);
+                            Fling.$('.header_box .circle_img').style.backgroundImage = data.recipeImg;
+                            Fling.$('.header_box .recipe_site_link a').href = data.recipeUrl;
+                            Fling.$('.header_box .description').innerText = data.recipeSubtitle;
+                            Fling.$('.header_box .title a').innerText = data.recipeTitle;
+                            theTemplateScript = Fling.$("#product_list_template").innerHTML;
+                            theTemplate = Handlebars.compile(theTemplateScript);
+                            theCompiledHtml = theTemplate(data);
+
+                            Fling.$('.product_list_wrap').innerHTML = theCompiledHtml;
+
+                        case 14:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function EventHandler(_x) {
+            return _ref.apply(this, arguments);
+        }
+
+        return EventHandler;
+    }(),
     modifyData: function modifyData(data) {
         var regex = /(\d+)/g;
         data.productDetail.forEach(function (e) {
